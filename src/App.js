@@ -7,8 +7,14 @@ import KeplerGl from "kepler.gl";
 import { addDataToMap } from "kepler.gl/actions";
 import useSwr from "swr";
 
+const keplerReducer = keplerGlReducer.initialState({
+  uiState: {
+      activeSidePanel: null,  
+      currentModal: null      
+  }
+});
 const reducers = combineReducers({
-  keplerGl: keplerGlReducer
+  keplerGl: keplerReducer,
 });
 
 const store = createStore(reducers, {}, applyMiddleware(taskMiddleware));
@@ -25,8 +31,9 @@ function Map() {
   const dispatch = useDispatch();
   const { data } = useSwr("covid", async () => {
     const response = await fetch(
-      "https://raw.githubusercontent.com/khangnguyen211195/Kepler/main/procurement_orders_lat_lon_a.json"
+      'data/procurement_orders_lat_lon_a.json'
     );
+    console.log(response)
     const data = await response.json();
     console.log(data)
 
