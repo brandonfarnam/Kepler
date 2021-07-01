@@ -25,9 +25,11 @@ function Map() {
   const dispatch = useDispatch();
   const { data } = useSwr("covid", async () => {
     const response = await fetch(
-      "https://gist.githubusercontent.com/leighhalliday/a994915d8050e90d413515e97babd3b3/raw/a3eaaadcc784168e3845a98931780bd60afb362f/covid19.json"
+      "https://raw.githubusercontent.com/khangnguyen211195/Kepler/main/procurement_orders_lat_lon_a.json"
     );
     const data = await response.json();
+    console.log(data)
+
     return data;
   });
 
@@ -37,8 +39,8 @@ function Map() {
         addDataToMap({
           datasets: {
             info: {
-              label: "COVID-19",
-              id: "covid19"
+              label: "ProcurementOrder",
+              id: "ProcurementOrder"
             },
             data
           },

@@ -4,27 +4,25 @@ require 'time'
 
 data = {
   fields: [
-    {name: 'country', format: '', type: 'string'},
-    {name: 'state', format: '', type: 'string'},
-    {name: 'day', format: 'YYYY-M-D H:m:s', type: 'timestamp'},
-    {name: 'latitude', format: '', type: 'real'},
-    {name: 'longitude', format: '', type: 'real'},
-    {name: 'count', format: '', type: 'integer'},
+    {name: 'id', format: '', type: 'int'},
+    {name: 'timestamp', format: 'm/d/yy h:mm', type: 'timestamp'},
+    {name: 'merchant_name', format: '', type: 'string'},
+    {name: 'lat', format: '', type: 'real'},
+    {name: 'lon', format: '', type: 'real'}
   ],
   rows: []
 }
 
-CSV.foreach("covid19.csv", {headers: true}) do |row|
+CSV.foreach("procurement_orders_lat_lon.csv", {headers: true}) do |row|
   data[:rows] << [
-    row["Country/Region"].to_s,
-    row["Province/State"].to_s,
-    Time.parse(row["Date"]).to_s,
-    row["Lat"].to_f,
-    row["Long"].to_f,
-    row["Value"].to_i
-  ]
+    row["id"].to_i,
+    row["timestamp"].to_s,
+    row["merchant_name"].to_s,
+    row["lat"].to_f,
+    row["lon"].to_f
+    ]
 end
 
-File.open("covid19.json", "w") do |file|
+File.open("procurement_orders_lat_lon_a.json", "w") do |file|
   file.puts data.to_json
 end
