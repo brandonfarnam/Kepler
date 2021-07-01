@@ -1,4 +1,4 @@
-id,timestamp,merchant_name,lat,lon
+id,date,merchant_name,lat,lon
 0,7/20/20 0:00,Bristol Farms,33.6067564,-117.8743132
 1,7/20/20 0:00,UFG Whole Foods,37.9776328,-84.5286723
 2,7/24/20 0:00,UFG Whole Foods,33.3183793,-111.8927755
